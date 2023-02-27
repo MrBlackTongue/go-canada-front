@@ -7,7 +7,7 @@ const { Title } = Typography;
 
 
 const Home = () => (
-  <Title>Привет</Title>
+  <Title>Привет, Валечик!</Title>
 );
 
 export default Home;

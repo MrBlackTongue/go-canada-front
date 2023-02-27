@@ -19,6 +19,8 @@ import {
   DownOutlined,
 } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
+import AddArticle from "./layout/modules/addArticle/addArticle";
+import Home from "../src/layout/modules/home/home";
 
 const { Header, Content, Footer } = Layout;
 
@@ -31,6 +33,7 @@ const App: React.FC = () => {
     {
       key: '1',
       icon: <TeamOutlined/>,
+      // icon: <Link to='/add-article'><TeamOutlined/></Link>,
       label: 'Главная',
     },
     {
@@ -157,6 +160,10 @@ const App: React.FC = () => {
           <div style={{ padding: 24, minHeight: 380, background: colorBgContainer }}>Content</div>
         </Card>
       </Content>
+      <Routes>
+        <Route path='/' element={<Home/>}/>
+        <Route path='/add-article' element={<AddArticle/>}/>
+      </Routes>
       <Footer style={{ textAlign: 'center' }}>Go Canada</Footer>
     </Layout>
   );
