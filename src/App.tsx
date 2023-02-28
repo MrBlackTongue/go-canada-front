@@ -1,66 +1,107 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
-import {Breadcrumb, Card, Layout, Menu, theme, Dropdown, Space} from 'antd';
+import {Breadcrumb, Card, Layout, theme, Dropdown, Space, Menu, MenuProps} from 'antd';
 import {Routes, Route, Link} from "react-router-dom";
-import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  UploadOutlined,
-  TrophyOutlined,
-  UnorderedListOutlined,
-  PicLeftOutlined,
-  FormOutlined,
-  TeamOutlined,
-  CopyOutlined,
-  FunctionOutlined,
-  DollarCircleOutlined,
-  AccountBookOutlined,
-  DatabaseOutlined,
-  DownOutlined,
-} from '@ant-design/icons';
-import type { MenuProps } from 'antd';
 import AddArticle from "./layout/modules/addArticle/addArticle";
 import Home from "../src/layout/modules/home/home";
+import MenuMain from "./layout/modules/menu/menu";
+import {AppstoreOutlined, MailOutlined, SettingOutlined, TeamOutlined} from "@ant-design/icons";
 
-const { Header, Content, Footer } = Layout;
+const {Header, Content, Footer} = Layout;
+
+const items = [
+  {
+    label: 'Главная',
+    key: 'mail',
+    icon: <Link to="/"><MailOutlined/></Link>,
+    link: '/',
+  },
+
+  {
+    label: 'Иммиграция',
+    key: 'app',
+    icon: <Link to="/add-article"><AppstoreOutlined/></Link>,
+    link: '/add-article',
+  },
+  {
+    label: 'Виза',
+    key: 'SubMenu',
+    icon: <SettingOutlined/>,
+    children: [
+      {
+        type: 'group',
+        label: 'Item 1',
+        children: [
+          {
+            label: 'Option 1',
+            key: 'setting:1',
+          },
+          {
+            label: 'Option 2',
+            key: 'setting:2',
+          },
+        ],
+      },
+      {
+        type: 'group',
+        label: 'Item 2',
+        children: [
+          {
+            label: 'Option 3',
+            key: 'setting:3',
+          },
+          {
+            label: 'Option 4',
+            key: 'setting:4',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    label: 'Работа',
+    key: 'SubMenu2',
+    icon: <TeamOutlined/>,
+    children: [
+      {
+        type: 'group',
+        label: 'Item 1',
+        children: [
+          {
+            label: 'Option 1',
+            key: 'setting:5',
+          },
+          {
+            label: 'Option 2',
+            key: 'setting:6',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    label: (
+      <a href="https://in-ca.ru/express-entry/16-immigration-to-canada-express-entry.html" target="_blank"
+         rel="noopener noreferrer">
+        Ссылка на источник
+      </a>
+    ),
+    key: 'alipay',
+  },
+];
 
 const App: React.FC = () => {
-  const {
-    token: { colorBgContainer },
-  } = theme.useToken();
 
-  const items: MenuProps['items'] = [
-    {
-      key: '1',
-      icon: <TeamOutlined/>,
-      // icon: <Link to='/add-article'><TeamOutlined/></Link>,
-      label: 'Главная',
-    },
-    {
-      key: '2',
-      icon: <UnorderedListOutlined/>,
-      label: 'Иммиграция',
-    },
-    {
-      key: '3',
-      icon: <PicLeftOutlined/>,
-      label: 'Виза',
-    },
-    {
-      key: '4',
-      icon: <FormOutlined/>,
-      label: 'Работа',
-    },
-    {
-      key: '5',
-      icon: <CopyOutlined/>,
-      label: 'Вопрос-ответ',
-    },
-  ];
+  const [current, setCurrent] = useState('mail');
+
+  const onClick: MenuProps['onClick'] = (e) => {
+    console.log('click ', e);
+    setCurrent(e.key);
+  };
 
   return (
     <Layout>
-      <Header style={{ position: 'sticky', top: 0, zIndex: 1, width: '100%' }}>
+      <Header style={{position: 'sticky', top: 0, zIndex: 1, width: '100%'}}>
         <div
           style={{
             float: 'left',
@@ -70,103 +111,29 @@ const App: React.FC = () => {
             background: 'rgba(255, 255, 255, 0.2)',
           }}
         />
-        <div className="logo"  />
-        {/*<img src="/public/img.png" alt="Go Canada"/>*/}
-        <Dropdown menu={{ items }}>
-          <a onClick={(e) => e.preventDefault()} style={{color: '#a5adb5', padding: 16}}>
-            <Space>
-              Главная
-              <DownOutlined />
-            </Space>
-          </a>
-        </Dropdown>
-        <Dropdown menu={{ items }}>
-          <a onClick={(e) => e.preventDefault()} style={{color: '#a5adb5', padding: 16}}>
-            <Space>
-              Иммиграция
-              <DownOutlined />
-            </Space>
-          </a>
-        </Dropdown>
-        <Dropdown menu={{ items }}>
-          <a onClick={(e) => e.preventDefault()} style={{color: '#a5adb5', padding: 16}}>
-            <Space>
-              Виза
-              <DownOutlined />
-            </Space>
-          </a>
-        </Dropdown>
-        <Dropdown menu={{ items }}>
-          <a onClick={(e) => e.preventDefault()} style={{color: '#a5adb5', padding: 16}}>
-            <Space>
-              Работа
-              <DownOutlined />
-            </Space>
-          </a>
-        </Dropdown>
-        <Dropdown menu={{ items }}>
-          <a onClick={(e) => e.preventDefault()} style={{color: '#a5adb5', padding: 16}}>
-            <Space>
-              Вопрос-ответ
-              <DownOutlined />
-            </Space>
-          </a>
-        </Dropdown>
-        {/*<Menu*/}
-        {/*  theme="dark"*/}
-        {/*  mode="horizontal"*/}
-        {/*  // defaultSelectedKeys={['2']}*/}
-        {/*  items={[*/}
-        {/*    {*/}
-        {/*      key: '1',*/}
-        {/*      icon: <TeamOutlined/>,*/}
-        {/*      label: 'Главная',*/}
-        {/*    },*/}
-        {/*    {*/}
-        {/*      key: '2',*/}
-        {/*      icon: <UnorderedListOutlined/>,*/}
-        {/*      label: 'Иммиграция',*/}
-        {/*    },*/}
-        {/*    {*/}
-        {/*      key: '3',*/}
-        {/*      icon: <PicLeftOutlined/>,*/}
-        {/*      label: 'Виза',*/}
-        {/*    },*/}
-        {/*    {*/}
-        {/*      key: '4',*/}
-        {/*      icon: <FormOutlined/>,*/}
-        {/*      label: 'Работа',*/}
-        {/*    },*/}
-        {/*    {*/}
-        {/*      key: '5',*/}
-        {/*      icon: <CopyOutlined/>,*/}
-        {/*      label: 'Вопрос-ответ',*/}
-        {/*    },*/}
-        {/*  ]}*/}
+        <div className="logo"/>
+        <MenuMain/>
+        {/*<Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} theme="dark"/>*/}
 
-        {/*  // items={new Array(3).fill(null).map((_, index) => ({*/}
-        {/*  //   key: String(index + 1),*/}
-        {/*  //   label: `nav ${index + 1}`,*/}
-        {/*  // }))}*/}
-        {/*/>*/}
       </Header>
-      <Content className="site-layout" style={{ padding: '0 50px' }}>
-        <Breadcrumb style={{ margin: '16px 0' }}>
-          <Breadcrumb.Item>Главная</Breadcrumb.Item>
-          <Breadcrumb.Item>Express entry</Breadcrumb.Item>
-          <Breadcrumb.Item>Пошаговая инструкция</Breadcrumb.Item>
-        </Breadcrumb>
-        <Card>
-          <div style={{ padding: 24, minHeight: 380, background: colorBgContainer }}>Content</div>
-        </Card>
-      </Content>
-      <Routes>
-        <Route path='/' element={<Home/>}/>
-        <Route path='/add-article' element={<AddArticle/>}/>
-      </Routes>
-      <Footer style={{ textAlign: 'center' }}>Go Canada</Footer>
+      <Layout className="site-layout">
+
+        <Content className="site-layout" style={{padding: '0 50px'}}>
+          <Breadcrumb style={{margin: '16px 0'}}>
+            <Breadcrumb.Item>Главная</Breadcrumb.Item>
+            <Breadcrumb.Item>Express entry</Breadcrumb.Item>
+            <Breadcrumb.Item>Пошаговая инструкция</Breadcrumb.Item>
+          </Breadcrumb>
+          <Routes>
+            <Route path='/' element={<Home/>}/>
+            <Route path='/add-article' element={<AddArticle/>}/>
+          </Routes>
+          {/*<div style={{padding: 24, minHeight: 380,}}>Content</div>*/}
+        </Content>
+      </Layout>
+      <Footer style={{textAlign: 'center'}}>Если вы еще не в Канаде, тогда мы идем к вам!</Footer>
     </Layout>
-  );
-};
+  )
+}
 
 export default App;

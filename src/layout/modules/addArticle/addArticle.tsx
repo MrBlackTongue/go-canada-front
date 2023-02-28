@@ -1,14 +1,9 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {
+  Card,
   Typography,
-  Space,
-  Button,
-  Form,
 } from 'antd';
-import {
-  SyncOutlined,
-  PlusOutlined,
-} from '@ant-design/icons';
+
 import '../../../App.css'
 
 const {Title} = Typography;
@@ -34,29 +29,31 @@ const AddArticle: React.FC = () => {
   };
 
   return (
-    <div style={{display: 'grid'}}>
-      <div className='centerTitle'>
-        <Title level={3}>Статья</Title>
+    <Card>
+      <div style={{display: 'grid'}}>
+        <div className='centerTitle'>
+          <Title level={3}>Статья</Title>
+        </div>
+        (
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="title">Заголовок статьи:</label>
+          <input
+            type="text"
+            id="title"
+            value={title}
+            onChange={(event) => setTitle(event.target.value)}
+          />
+          <label htmlFor="content">Содержание статьи:</label>
+          <textarea
+            id="content"
+            value={content}
+            onChange={(event) => setContent(event.target.value)}
+          />
+          <button type="submit">Создать статью</button>
+        </form>
+        );
       </div>
-      (
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="title">Заголовок статьи:</label>
-        <input
-          type="text"
-          id="title"
-          value={title}
-          onChange={(event) => setTitle(event.target.value)}
-        />
-        <label htmlFor="content">Содержание статьи:</label>
-        <textarea
-          id="content"
-          value={content}
-          onChange={(event) => setContent(event.target.value)}
-        />
-        <button type="submit">Создать статью</button>
-      </form>
-      );
-    </div>
+    </Card>
   );
 };
 
