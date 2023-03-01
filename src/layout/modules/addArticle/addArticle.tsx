@@ -1,60 +1,55 @@
 import React, {useState} from 'react';
-import {
-  Card,
-  Typography,
-} from 'antd';
-
-import '../../../App.css'
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import {Button, Card, Typography} from "antd";
 
 const {Title} = Typography;
 
-interface Article {
-  title: string;
-  content: string;
-}
-
-interface Props {
-  onSubmit: (article: Article) => void;
-}
-
-const AddArticle: React.FC = () => {
-  const [title, setTitle] = useState('');
+const ArticleEditor: React.FC = () => {
   const [content, setContent] = useState('');
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    // onSubmit({title, content});
-    setTitle('');
-    setContent('');
+  const handleChange = (value: string) => {
+    setContent(value);
+  };
+
+  const handleSave = () => {
+    // Отправить содержимое статьи на сервер или сохранить локально
+    console.log('Article saved:', content);
   };
 
   return (
     <Card>
       <div style={{display: 'grid'}}>
         <div className='centerTitle'>
-          <Title level={3}>Статья</Title>
+          <Title level={3}>Добавление новой статьи</Title>
         </div>
-        (
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="title">Заголовок статьи:</label>
-          <input
-            type="text"
-            id="title"
-            value={title}
-            onChange={(event) => setTitle(event.target.value)}
-          />
-          <label htmlFor="content">Содержание статьи:</label>
-          <textarea
-            id="content"
-            value={content}
-            onChange={(event) => setContent(event.target.value)}
-          />
-          <button type="submit">Создать статью</button>
-        </form>
-        );
+      </div>
+      <div>
+        <ReactQuill
+          value={content}
+          onChange={handleChange}
+          placeholder="Write your article here..."
+          modules={{
+            toolbar: [
+              [{'header': [1, 2, false]}],
+              ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+              [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
+              ['link', 'image'],
+              ['clean']
+            ],
+          }}
+          formats={[
+            'header',
+            'bold', 'italic', 'underline', 'strike', 'blockquote',
+            'list', 'bullet', 'indent',
+            'link', 'image',
+          ]}
+        />
+        <Button onClick={handleSave} style={{marginTop: 10}}>Save</Button>
       </div>
     </Card>
+
   );
 };
 
-export default AddArticle;
+export default ArticleEditor;

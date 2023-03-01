@@ -6,6 +6,8 @@ import AddArticle from "./layout/modules/addArticle/addArticle";
 import Home from "../src/layout/modules/home/home";
 import MenuMain from "./layout/modules/menu/menu";
 import {AppstoreOutlined, MailOutlined, SettingOutlined, TeamOutlined} from "@ant-design/icons";
+import Editor from "./layout/modules/addArticle/addArticle";
+import ArticleEditor from "./layout/modules/addArticle/addArticle";
 
 const {Header, Content, Footer} = Layout;
 
@@ -126,7 +128,8 @@ const App: React.FC = () => {
           </Breadcrumb>
           <Routes>
             <Route path='/' element={<Home/>}/>
-            <Route path='/add-article' element={<AddArticle/>}/>
+            <Route path='/add-article' element={<ArticleEditor/>}/>
+            {/*<Route path='/add-article' element={<AddArticle/>}/>*/}
           </Routes>
           {/*<div style={{padding: 24, minHeight: 380,}}>Content</div>*/}
         </Content>
