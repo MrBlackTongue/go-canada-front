@@ -1,105 +1,12 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './App.css';
-import {Breadcrumb, Card, Layout, theme, Dropdown, Space, Menu, MenuProps} from 'antd';
-import {Routes, Route, Link} from "react-router-dom";
-import AddArticle from "./layout/modules/addArticle/addArticle";
-import Home from "../src/layout/modules/home/home";
-import MenuMain from "./layout/modules/menu/menu";
-import {AppstoreOutlined, MailOutlined, SettingOutlined, TeamOutlined} from "@ant-design/icons";
-import Editor from "./layout/modules/addArticle/addArticle";
-import ArticleEditor from "./layout/modules/addArticle/addArticle";
+import {Breadcrumb, Layout} from 'antd';
+import MenuMain from "./components/MenuMain/MenuMain";
+import AppRoutes from "./components/AppRoutes/AppRoutes";
 
 const {Header, Content, Footer} = Layout;
 
-const items = [
-  {
-    label: 'Главная',
-    key: 'mail',
-    icon: <Link to="/"><MailOutlined/></Link>,
-    link: '/',
-  },
-
-  {
-    label: 'Иммиграция',
-    key: 'app',
-    icon: <Link to="/add-article"><AppstoreOutlined/></Link>,
-    link: '/add-article',
-  },
-  {
-    label: 'Виза',
-    key: 'SubMenu',
-    icon: <SettingOutlined/>,
-    children: [
-      {
-        type: 'group',
-        label: 'Item 1',
-        children: [
-          {
-            label: 'Option 1',
-            key: 'setting:1',
-          },
-          {
-            label: 'Option 2',
-            key: 'setting:2',
-          },
-        ],
-      },
-      {
-        type: 'group',
-        label: 'Item 2',
-        children: [
-          {
-            label: 'Option 3',
-            key: 'setting:3',
-          },
-          {
-            label: 'Option 4',
-            key: 'setting:4',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    label: 'Работа',
-    key: 'SubMenu2',
-    icon: <TeamOutlined/>,
-    children: [
-      {
-        type: 'group',
-        label: 'Item 1',
-        children: [
-          {
-            label: 'Option 1',
-            key: 'setting:5',
-          },
-          {
-            label: 'Option 2',
-            key: 'setting:6',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    label: (
-      <a href="https://in-ca.ru/express-entry/16-immigration-to-canada-express-entry.html" target="_blank"
-         rel="noopener noreferrer">
-        Ссылка на источник
-      </a>
-    ),
-    key: 'alipay',
-  },
-];
-
 const App: React.FC = () => {
-
-  const [current, setCurrent] = useState('mail');
-
-  const onClick: MenuProps['onClick'] = (e) => {
-    console.log('click ', e);
-    setCurrent(e.key);
-  };
 
   return (
     <Layout>
@@ -115,22 +22,15 @@ const App: React.FC = () => {
         />
         <div className="logo"/>
         <MenuMain/>
-        {/*<Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} theme="dark"/>*/}
-
       </Header>
       <Layout className="site-layout">
-
         <Content className="site-layout" style={{padding: '0 50px'}}>
           <Breadcrumb style={{margin: '16px 0'}}>
             <Breadcrumb.Item>Главная</Breadcrumb.Item>
             <Breadcrumb.Item>Express entry</Breadcrumb.Item>
             <Breadcrumb.Item>Пошаговая инструкция</Breadcrumb.Item>
           </Breadcrumb>
-          <Routes>
-            <Route path='/' element={<Home/>}/>
-            <Route path='/add-article' element={<ArticleEditor/>}/>
-            {/*<Route path='/add-article' element={<AddArticle/>}/>*/}
-          </Routes>
+          <AppRoutes/>
           {/*<div style={{padding: 24, minHeight: 380,}}>Content</div>*/}
         </Content>
       </Layout>

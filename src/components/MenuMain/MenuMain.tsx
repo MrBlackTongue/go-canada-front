@@ -16,7 +16,6 @@ const items = [
     icon: <Link to="/"><MailOutlined/></Link>,
     link: '/',
   },
-
   {
     label: 'Иммиграция',
     key: 'app',
@@ -90,7 +89,6 @@ const items = [
   },
 ];
 
-
 const MenuMain: React.FC = () => {
   const [current, setCurrent] = useState('mail');
 
@@ -98,7 +96,6 @@ const MenuMain: React.FC = () => {
     console.log('click ', e);
     setCurrent(e.key);
   };
-
   return <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} theme="dark"/>
 };
 
