@@ -1,1 +1,1 @@
-export * from './ArticleTypes';
+export * from './Article';

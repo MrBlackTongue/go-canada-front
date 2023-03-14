@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import {Button, Card, Typography} from "antd";
+import {postNewArticle} from "../../services";
 
 const {Title} = Typography;
 
@@ -12,10 +13,24 @@ const ArticleEditor: React.FC = () => {
     setContent(value);
   };
 
-  const handleSave = () => {
-    // Отправить содержимое статьи на сервер или сохранить локально
+// const addArticle = (values: { [key: string]: any }): Article => {
+  const addArticle = () => {
+    const article = {
+      title: 'title',
+      content: content,
+      imageIds: [],
+    };
+    postNewArticle(article);
+    console.log('article', article)
     console.log('Article saved:', content);
+    return article;
   };
+
+//   const handleSave = async () => {
+//     // Отправить содержимое статьи на сервер или сохранить локально
+//     postNewArticle
+//     console.log('Article saved:', content);
+//   };
 
   return (
     <Card>
@@ -45,7 +60,7 @@ const ArticleEditor: React.FC = () => {
             'link', 'image',
           ]}
         />
-        <Button onClick={handleSave} style={{marginTop: 10}}>Save</Button>
+        <Button onClick={addArticle} style={{marginTop: 10}}>Save</Button>
       </div>
     </Card>
 
