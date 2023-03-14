@@ -1,36 +1,33 @@
 import React, {useState} from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import {Button, Card, Typography} from "antd";
+import {Button, Card, Input, Typography} from "antd";
 import {postNewArticle} from "../../services";
 
 const {Title} = Typography;
 
 const ArticleEditor: React.FC = () => {
+  const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+
+  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTitle(e.target.value);
+  };
 
   const handleChange = (value: string) => {
     setContent(value);
   };
 
-// const addArticle = (values: { [key: string]: any }): Article => {
   const addArticle = () => {
     const article = {
-      title: 'title',
+      title: title,
       content: content,
       imageIds: [],
     };
     postNewArticle(article);
-    console.log('article', article)
-    console.log('Article saved:', content);
+    console.log('Article saved:', article);
     return article;
   };
-
-//   const handleSave = async () => {
-//     // Отправить содержимое статьи на сервер или сохранить локально
-//     postNewArticle
-//     console.log('Article saved:', content);
-//   };
 
   return (
     <Card>
@@ -40,6 +37,11 @@ const ArticleEditor: React.FC = () => {
         </div>
       </div>
       <div>
+        <Input
+          style={{width: 600, marginBottom: '1em'}}
+          placeholder="Название статьи"
+          value={title}
+          onChange={handleTitleChange}/>
         <ReactQuill
           value={content}
           onChange={handleChange}
