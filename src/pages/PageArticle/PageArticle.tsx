@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import {Button, Card, Input, Typography} from "antd";
-import {postNewArticle, postNewImage} from "../../services";
+import {postNewArticle} from "../../services";
 import {ArticleType} from "../../types";
 
 const {Title} = Typography;
@@ -20,21 +20,6 @@ const ArticleEditor: React.FC = () => {
 
   const handleChange = (value: string) => {
     setArticle({...article, content: value});
-  };
-
-  const handleImageUpload = (file: File) => {
-    const formData = new FormData();
-    formData.append("image", file);
-    return postNewImage(formData).then((result) => {
-      console.log("Image uploaded successfully:", result);
-      const imageId = result;
-      const updatedArticle = {
-        ...article,
-        imageIds: article?.imageIds ? [...article.imageIds, imageId] : [imageId],
-      };
-      setArticle(updatedArticle);
-      return imageId;
-    });
   };
 
   const addArticle = () => {
