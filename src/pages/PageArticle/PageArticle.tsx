@@ -3,23 +3,23 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import {Button, Card, Input, Typography} from "antd";
 import {postNewArticle, postNewImage} from "../../services";
-import {Article} from "../../types";
+import {ArticleType} from "../../types";
 
 const {Title} = Typography;
 
 const ArticleEditor: React.FC = () => {
-  const [article, setArticle] = useState<Article>({
+  const [article, setArticle] = useState<ArticleType>({
     title: '',
     content: '',
     imageIds: [],
   });
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setArticle({ ...article, title: e.target.value });
+    setArticle({...article, title: e.target.value});
   };
 
   const handleChange = (value: string) => {
-    setArticle({ ...article, content: value });
+    setArticle({...article, content: value});
   };
 
   const handleImageUpload = (file: File) => {
@@ -55,7 +55,8 @@ const ArticleEditor: React.FC = () => {
           style={{width: 600, marginBottom: '1em'}}
           placeholder="Название статьи"
           value={article.title}
-          onChange={handleTitleChange}/>
+          onChange={handleTitleChange}
+        />
         <ReactQuill
           value={article.content}
           onChange={handleChange}

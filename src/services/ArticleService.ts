@@ -1,9 +1,9 @@
-import {Article} from "../types";
+import {ArticleType} from "../types";
 import {message} from "antd";
-import {URL, ARTICLE} from "./Routes";
+import {URL, ARTICLE, ALL} from "./Routes";
 
 // Добавить новую статью
-export function postNewArticle(data: Article) {
+export function postNewArticle(data: ArticleType) {
   try {
     const config = {
       method: 'POST',
@@ -22,5 +22,20 @@ export function postNewArticle(data: Article) {
       .catch((error) => console.error(error));
   } catch (error) {
     console.error(error);
+  }
+}
+
+// Получить все статьи
+export async function getAllArticles(): Promise<ArticleType[]> {
+  try {
+    const res = await fetch(URL + ARTICLE + ALL);
+    if (!res.ok) {
+      console.error(res.statusText);
+      return Promise.reject();
+    }
+    return await res.json() as ArticleType[];
+  } catch (error) {
+    console.error(error);
+    return Promise.reject(error);
   }
 }

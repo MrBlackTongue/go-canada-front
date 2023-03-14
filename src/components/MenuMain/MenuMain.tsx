@@ -13,8 +13,8 @@ const items = [
   {
     label: 'Главная',
     key: 'mail',
-    icon: <Link to="/"><MailOutlined/></Link>,
-    link: '/',
+    icon: <Link to="/all-article"><MailOutlined/></Link>,
+    link: '/all-article',
   },
   {
     label: 'Иммиграция',
