@@ -7,7 +7,7 @@ import {ArticleType} from "../../types";
 
 const {Title} = Typography;
 
-const ArticleEditor: React.FC = () => {
+export const PageAddArticle: React.FC = () => {
   const [article, setArticle] = useState<ArticleType>({
     title: '',
     content: '',
@@ -26,23 +26,6 @@ const ArticleEditor: React.FC = () => {
     console.log('Article saved:', article);
     return article;
   };
-
-//   const updateArticle = (values: { [key: string]: any }): ArticleType => {
-//     const article: ArticleType = {
-//       id:
-//       amount: values.amount,
-//       cost: values.cost,
-//       date: values['date'].format('YYYY-MM-DD'),
-//       product: {
-//         id: values.product,
-//       },
-//       paid: values.paid,
-//     };
-//     setIsDrawerOpen(false);
-//     putChangePurchase(purchase);
-//     setUpdateTable(!updateTable);
-//     return purchase;
-//   };
 
   return (
     <Card>
@@ -78,10 +61,8 @@ const ArticleEditor: React.FC = () => {
             'link', 'image',
           ]}
         />
-        <Button onClick={addArticle} style={{marginTop: 10}}>Save</Button>
+        <Button onClick={addArticle} style={{marginTop: 10}}>Сохранить</Button>
       </div>
     </Card>
   );
 };
-
-export default ArticleEditor;

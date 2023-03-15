@@ -40,8 +40,8 @@ export async function getAllArticles(): Promise<ArticleType[]> {
   }
 }
 
-// Редактирование статьи
-export async function putChangeArticles(data: ArticleType) {
+// Редактировать статью
+export async function putUpdateArticle(data: ArticleType) {
   try {
     const config = {
       method: 'PUT',
