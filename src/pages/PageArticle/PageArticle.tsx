@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import 'react-quill/dist/quill.snow.css';
-import {Button, Card, Typography, Space} from "antd";
+import {Card, Typography, Space} from "antd";
 import {getArticleById} from "../../services";
-import {ArticleType, ItemArticleProps} from "../../types";
+import {ArticleType} from "../../types";
 import { useParams } from 'react-router-dom';
 
 const {Title} = Typography;
@@ -13,23 +13,11 @@ const PageArticle: React.FC = () => {
 
   useEffect(() => {
     if (id) {
-      console.log('id', id)
       getArticleById(id).then((fetchedArticle) => {
         setArticle(fetchedArticle);
       });
     }
   }, [id]);
-
-
-  // // Обновление статьи
-  // useEffect(() => {
-  //   updateArticle();
-  // }, [!isUpdateArticle]);
-  //
-  //
-  // useEffect(() => {
-  //   updateArticle();
-  // }, []);
 
   return (
     <Card>

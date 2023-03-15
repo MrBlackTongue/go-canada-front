@@ -10,11 +10,8 @@ import { Link } from 'react-router-dom';
 
 const {Title} = Typography;
 
-const ArticleEditor: React.FC = () => {
+const PageAllArticles: React.FC = () => {
   const [articles, setArticles] = useState<ArticleType[]>();
-
-  // Обновить статью
-  const [updateArticle, setUpdateArticle] = useState(false);
 
   const allArticles = () => {
     getAllArticles().then((articles) => {
@@ -59,4 +56,4 @@ const ArticleEditor: React.FC = () => {
   );
 };
 
-export default ArticleEditor;
+export default PageAllArticles;
