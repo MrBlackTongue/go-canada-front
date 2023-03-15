@@ -11,7 +11,7 @@ const AppRoutes: React.FC = () => {
       <Route path="/" element={<PageHome/>}/>
       <Route path="/all-article" element={<PageAllArticles/>}/>
       <Route path="/add-article" element={<ArticleEditor/>}/>
-      <Route path="/article" element={<PageArticle/>}/>
+      <Route path="/article/:id" element={<PageArticle/>}/>
     </Routes>
   );
 };
