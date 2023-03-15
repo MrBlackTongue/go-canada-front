@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import 'react-quill/dist/quill.snow.css';
-import {Button, Card, Typography, Space} from "antd";
-import {getAllArticles} from "../../services";
+import {Button, Card, Typography, Space, Popconfirm} from "antd";
+import {getAllArticles, deleteArticleById} from "../../services";
 import {ArticleType} from "../../types";
 import {
   ZoomInOutlined,
+  DeleteOutlined,
 } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 
@@ -18,6 +19,14 @@ const PageAllArticles: React.FC = () => {
       setArticles(articles)
     })
   }
+
+  const handleDelete = (id: number | undefined) => {
+    if (id) {
+      deleteArticleById(id).then(() => {
+        allArticles();
+      });
+    }
+  };
 
   useEffect(() => {
     allArticles()
@@ -36,11 +45,28 @@ const PageAllArticles: React.FC = () => {
               key={article.id}
               title={article.title}
               extra={
-                <Link to={`/article/${article.id}`}>
-                  <Button type="primary" icon={<ZoomInOutlined />}>
-                    Подробнее
-                  </Button>
-                </Link>
+                <Space>
+                  <Link to={`/article/${article.id}`}>
+                    <Button type="primary" icon={<ZoomInOutlined />}>
+                      Просмотреть
+                    </Button>
+                  </Link>
+                  <Link to={`/edit-article/${article.id}`}>
+                    <Button type="primary">Редактировать</Button>
+                  </Link>
+                  {article.id && (
+                    <Popconfirm
+                      title="Вы уверены, что хотите удалить статью?"
+                      onConfirm={() => handleDelete(article.id)}
+                      okText="Да"
+                      cancelText="Нет"
+                    >
+                      <Button type="primary" danger icon={<DeleteOutlined />}>
+                        Удалить
+                      </Button>
+                    </Popconfirm>
+                  )}
+                </Space>
               }
               style={{width: '100%'}}>
               {article.content && (

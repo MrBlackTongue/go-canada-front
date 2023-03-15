@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import 'react-quill/dist/quill.snow.css';
-import {Button, Card, Typography, Space} from "antd";
+import {Card, Typography, Space} from "antd";
 import {getArticleById} from "../../services";
 import {ArticleType} from "../../types";
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 const {Title} = Typography;
 
@@ -24,9 +24,6 @@ const PageArticle: React.FC = () => {
       <div style={{ display: 'grid' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <Title level={3}>{article?.title}</Title>
-          <Link to={`/edit-article/${id}`}>
-            <Button type="primary">Редактировать статью</Button>
-          </Link>
         </div>
         <Space direction="vertical">
           <Card key={article?.id} style={{width: '100%'}}>
