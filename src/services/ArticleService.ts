@@ -39,3 +39,44 @@ export async function getAllArticles(): Promise<ArticleType[]> {
     return Promise.reject(error);
   }
 }
+
+// Редактирование статьи
+export async function putChangeArticles(data: ArticleType) {
+  try {
+    const config = {
+      method: 'PUT',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(data),
+    };
+    fetch(URL + ARTICLE, config)
+      .then(response => {
+        if (response.ok) {
+          return message.success('Запись изменена');
+        } else {
+          console.error(response.statusText);
+          return message.error('Ошибка при изменении записи');
+        }
+      })
+      .catch(error => console.error(error))
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Удалить статью по id
+export async function deleteArticleById(id: number) {
+  try {
+    const response = await fetch(URL + ARTICLE + `/${id}`, {
+      method: 'DELETE',
+    });
+    const data = await response.json();
+    if (data.success) {
+      return message.success('Запись удалена');
+    } else {
+      console.error(response.statusText);
+      return message.error('Ошибка при удалении записи');
+    }
+  } catch (err) {
+    console.error(err);
+  }
+}

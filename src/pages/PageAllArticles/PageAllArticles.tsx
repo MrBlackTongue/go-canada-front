@@ -28,7 +28,7 @@ const ArticleEditor: React.FC = () => {
         </div>
         <Space direction="vertical">
           {articles?.map((article) => (
-            <Card key={article.id} title={article.title} style={{width: '100%'}}>
+            <Card key={article.id} title={article.title} extra={<a href="#">Подробнее</a>} style={{width: '100%'}}>
               {article.content && (
                 <div dangerouslySetInnerHTML={{__html: article.content}} />
               )}

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Route, Routes} from 'react-router-dom';
 import PageHome from '../../pages/PageHome/PageHome';
-import ArticleEditor from "../../pages/PageArticle/PageArticle";
+import ArticleEditor from "../../pages/AddPageArticle/AddPageArticle";
 import PageAllArticles from "../../pages/PageAllArticles/PageAllArticles";
 
 const AppRoutes: React.FC = () => {
