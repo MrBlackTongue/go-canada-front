@@ -3,10 +3,7 @@ import 'react-quill/dist/quill.snow.css';
 import {Button, Card, Typography, Space, Popconfirm} from "antd";
 import {getAllArticles, deleteArticleById} from "../../services";
 import {ArticleType} from "../../types";
-import {
-  ZoomInOutlined,
-  DeleteOutlined,
-} from '@ant-design/icons';
+import {ZoomInOutlined, DeleteOutlined, EditOutlined} from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 
 const {Title} = Typography;
@@ -47,12 +44,20 @@ const PageAllArticles: React.FC = () => {
               extra={
                 <Space>
                   <Link to={`/article/${article.id}`}>
-                    <Button type="primary" icon={<ZoomInOutlined />}>
+                    <Button
+                      type="primary"
+                      icon={<ZoomInOutlined />}>
                       Просмотреть
                     </Button>
                   </Link>
                   <Link to={`/edit-article/${article.id}`}>
-                    <Button type="primary">Редактировать</Button>
+                    <Button
+                      type="primary"
+                      icon={<EditOutlined />}
+                      style={{ backgroundColor: 'green', borderColor: 'green' }}
+                      >
+                      Редактировать
+                    </Button>
                   </Link>
                   {article.id && (
                     <Popconfirm
@@ -61,7 +66,9 @@ const PageAllArticles: React.FC = () => {
                       okText="Да"
                       cancelText="Нет"
                     >
-                      <Button type="primary" danger icon={<DeleteOutlined />}>
+                      <Button
+                        type="primary"
+                        danger icon={<DeleteOutlined />}>
                         Удалить
                       </Button>
                     </Popconfirm>
