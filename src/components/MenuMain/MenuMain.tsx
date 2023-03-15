@@ -17,10 +17,16 @@ const items = [
     link: '/all-article',
   },
   {
-    label: 'Иммиграция',
-    key: 'app',
+    label: 'Добавление статьи',
+    key: 'add-article',
     icon: <Link to="/add-article"><AppstoreOutlined/></Link>,
     link: '/add-article',
+  },
+  {
+    label: 'Статья',
+    key: 'article',
+    icon: <Link to="/article"><MailOutlined/></Link>,
+    link: '/article',
   },
   {
     label: 'Виза',
@@ -93,7 +99,7 @@ const MenuMain: React.FC = () => {
   const [current, setCurrent] = useState('mail');
 
   const onClick: MenuProps['onClick'] = (e) => {
-    console.log('click ', e);
+    // console.log('click ', e);
     setCurrent(e.key);
   };
   return <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} theme="dark"/>

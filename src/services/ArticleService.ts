@@ -80,3 +80,18 @@ export async function deleteArticleById(id: number) {
     console.error(err);
   }
 }
+
+// Получить статью по id
+export async function getArticleById(id: number| string): Promise<ArticleType | undefined> {
+  try {
+    const response = await fetch(URL + ARTICLE + `/${id}`);
+    if (!response.ok) {
+      console.error(response.statusText);
+      return Promise.reject();
+    }
+    return await response.json();
+  } catch (error) {
+    console.error(error);
+    return Promise.reject(error);
+  }
+}

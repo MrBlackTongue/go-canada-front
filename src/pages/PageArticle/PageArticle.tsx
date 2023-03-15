@@ -1,39 +1,48 @@
 import React, {useEffect, useState} from 'react';
 import 'react-quill/dist/quill.snow.css';
 import {Button, Card, Typography, Space} from "antd";
-import {getAllArticles} from "../../services";
-import {ArticleType} from "../../types";
+import {getArticleById} from "../../services";
+import {ArticleType, ItemArticleProps} from "../../types";
+import { useParams } from 'react-router-dom';
 
 const {Title} = Typography;
 
 const PageArticle: React.FC = () => {
-  const [articles, setArticles] = useState<ArticleType>();
+  const [article, setArticle] = useState<ArticleType>();
+  const { id } = useParams<{ id: string }>();
 
-  const allArticles = () => {
-    getAllArticles().then((articles) => {
-      setArticles(articles)
-      console.log('articles', articles)
-    })
-  }
+  useEffect(() => {
+    if (id) {
+      console.log('id', id)
+      getArticleById(id).then((fetchedArticle) => {
+        setArticle(fetchedArticle);
+      });
+    }
+  }, [id]);
 
-  useEffect(()=> {
-    allArticles()
-  }, [])
+
+  // // Обновление статьи
+  // useEffect(() => {
+  //   updateArticle();
+  // }, [!isUpdateArticle]);
+  //
+  //
+  // useEffect(() => {
+  //   updateArticle();
+  // }, []);
 
   return (
     <Card>
       <div style={{display: 'grid'}}>
         <div className='centerTitle'>
-          <Title level={3}>Все статьи</Title>
+          <Title level={3}>{article?.title}</Title>
         </div>
         <Space direction="vertical">
-          {articles?.map((article) => (
-            <Card key={article.id} title={article.title} extra={<a href="#">Подробнее</a>} style={{width: '100%'}}>
-              {article.content && (
-                <div dangerouslySetInnerHTML={{__html: article.content}} />
-              )}
-            </Card>
-          ))}
+          <Card key={article?.id} style={{width: '100%'}}>
+            {article?.content && (
+              <div dangerouslySetInnerHTML={{__html: article.content}}/>
+            )}
+          </Card>
         </Space>
       </div>
       <div>

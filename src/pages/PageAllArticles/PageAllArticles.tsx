@@ -3,20 +3,26 @@ import 'react-quill/dist/quill.snow.css';
 import {Button, Card, Typography, Space} from "antd";
 import {getAllArticles} from "../../services";
 import {ArticleType} from "../../types";
+import {
+  ZoomInOutlined,
+} from '@ant-design/icons';
+import { Link } from 'react-router-dom';
 
 const {Title} = Typography;
 
 const ArticleEditor: React.FC = () => {
   const [articles, setArticles] = useState<ArticleType[]>();
 
+  // Обновить статью
+  const [updateArticle, setUpdateArticle] = useState(false);
+
   const allArticles = () => {
     getAllArticles().then((articles) => {
       setArticles(articles)
-      console.log('articles', articles)
     })
   }
 
-  useEffect(()=> {
+  useEffect(() => {
     allArticles()
   }, [])
 
@@ -28,9 +34,20 @@ const ArticleEditor: React.FC = () => {
         </div>
         <Space direction="vertical">
           {articles?.map((article) => (
-            <Card key={article.id} title={article.title} extra={<a href="#">Подробнее</a>} style={{width: '100%'}}>
+            <Card
+              key={article.id}
+              title={article.title}
+              extra={
+                <Link to={`/article/${article.id}`}>
+                {/*<Link to={`/article`}>*/}
+                  <Button type="primary" icon={<ZoomInOutlined />}>
+                    Подробнее
+                  </Button>
+                </Link>
+              }
+              style={{width: '100%'}}>
               {article.content && (
-                <div dangerouslySetInnerHTML={{__html: article.content}} />
+                <div dangerouslySetInnerHTML={{__html: article.content}}/>
               )}
             </Card>
           ))}
