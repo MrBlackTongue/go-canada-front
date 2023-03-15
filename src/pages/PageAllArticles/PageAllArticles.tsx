@@ -32,11 +32,11 @@ const PageAllArticles: React.FC = () => {
         <Space direction="vertical">
           {articles?.map((article) => (
             <Card
+              hoverable
               key={article.id}
               title={article.title}
               extra={
                 <Link to={`/article/${article.id}`}>
-                {/*<Link to={`/article`}>*/}
                   <Button type="primary" icon={<ZoomInOutlined />}>
                     Подробнее
                   </Button>

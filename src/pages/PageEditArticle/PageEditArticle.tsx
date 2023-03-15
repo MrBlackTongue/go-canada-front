@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {useParams} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import {Card, Typography, Input, Button} from 'antd';
 import {getArticleById, putUpdateArticle} from '../../services';
 import {ArticleType} from '../../types';
@@ -23,7 +23,6 @@ export const PageEditArticle: React.FC = () => {
   const changeArticle = async () => {
     if (article) {
       await putUpdateArticle(article);
-      console.log('Article saved:', article);
       return article;
     }
   };
@@ -70,7 +69,9 @@ export const PageEditArticle: React.FC = () => {
             'link', 'image',
           ]}
         />
-        <Button onClick={changeArticle} style={{marginTop: 10}}>Сохранить</Button>
+        <Link to={`/article/${id}`}>
+          <Button onClick={changeArticle} style={{marginTop: 10}}>Сохранить</Button>
+        </Link>
       </div>
     </Card>
   );

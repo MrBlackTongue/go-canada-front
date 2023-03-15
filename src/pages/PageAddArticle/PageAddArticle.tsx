@@ -61,7 +61,10 @@ export const PageAddArticle: React.FC = () => {
             'link', 'image',
           ]}
         />
-        <Button onClick={addArticle} style={{marginTop: 10}}>Сохранить</Button>
+        <Button onClick={ () => {
+          addArticle()
+          // setArticle()
+        }} style={{marginTop: 10}}>Сохранить</Button>
       </div>
     </Card>
   );

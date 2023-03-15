@@ -23,10 +23,10 @@ const items = [
     link: '/add-article',
   },
   {
-    label: 'Статья',
+    label: 'Иммиграция',
     key: 'article',
-    icon: <Link to="/article"><MailOutlined/></Link>,
-    link: '/article',
+    icon: <Link to=""><MailOutlined/></Link>,
+    link: '',
   },
   {
     label: 'Виза',
