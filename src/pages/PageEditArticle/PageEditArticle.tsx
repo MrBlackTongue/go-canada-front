@@ -42,6 +42,8 @@ export const PageEditArticle: React.FC = () => {
         <div className="centerTitle">
           <Title level={3}>Редактировать статью</Title>
         </div>
+      </div>
+      <div>
         <Input
           style={{width: 600, marginBottom: '1em'}}
           placeholder="Название статьи"
