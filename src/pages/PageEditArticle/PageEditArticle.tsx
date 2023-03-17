@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Link, useParams} from 'react-router-dom';
-import {Card, Typography, Input, Button} from 'antd';
+import {Card, Typography, Input, Button, FloatButton} from 'antd';
 import {getArticleById, putUpdateArticle} from '../../services';
 import {ArticleType} from '../../types';
 import ReactQuill from "react-quill";
@@ -36,7 +36,7 @@ export const PageEditArticle: React.FC = () => {
   }, [id]);
 
   return (
-    <Card>
+    <Card style={{width: '70%', margin: '0 auto'}}>
       <div style={{display: 'grid'}}>
         <div className="centerTitle">
           <Title level={3}>Редактировать статью</Title>
@@ -52,7 +52,7 @@ export const PageEditArticle: React.FC = () => {
         <ReactQuill
           value={article?.content}
           onChange={handleChange}
-          placeholder="Write your article here..."
+          placeholder="Текст статьи..."
           modules={{
             toolbar: [
               [{'header': [1, 2, false]}],
@@ -73,6 +73,7 @@ export const PageEditArticle: React.FC = () => {
           <Button onClick={changeArticle} style={{marginTop: 10}}>Сохранить</Button>
         </Link>
       </div>
+      <FloatButton.BackTop/>
     </Card>
   );
 };

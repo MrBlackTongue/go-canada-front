@@ -7,6 +7,12 @@
   pointer-events: none;
 }
 
+.app-logo {
+  height: 31px;
+  width: auto;
+  margin: 16px 24px 16px 0;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -35,4 +41,58 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.menu-main .ant-menu-item-selected {
+  background-color: red !important;
+  color: #fff !important;
+
+  /*border-bottom-color: white !important;*/
+}
+
+.menu-main .ant-menu-item:hover::after {
+  border-bottom: 2px solid red !important;
+}
+
+.menu-main .ant-menu-item::after {
+  border-bottom: none !important;
+}
+
+.blueButton {
+  color: #1677ff !important;
+  border-color: #1677ff !important;
+}
+
+.blueButton:hover {
+  color: #1677ff !important;
+  border-color: #1677ff !important;
+}
+
+.blueButton:active {
+  color: #1677ff !important;
+  border-color: #1677ff !important;
+}
+
+.blueButton:focus {
+  color: #1677ff !important;
+  border-color: #1677ff !important;
+}
+
+.greenButton {
+  color: #31aa2d !important;
+}
+
+.greenButton:hover {
+  color: #31aa2d !important;
+  border-color: #31aa2d !important;
+}
+
+.greenButton:active {
+  color: #31aa2d !important;
+  border-color: #31aa2d !important;
+}
+
+.greenButton:focus {
+  color: #31aa2d !important;
+  border-color: #31aa2d !important;
 }

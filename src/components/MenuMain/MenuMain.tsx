@@ -26,15 +26,6 @@ const items = [
     icon: <Link to="/add-article"><AppstoreOutlined/></Link>,
     link: '/add-article',
   },
-  // {
-  //   label: (
-  //     <a href="https://in-ca.ru/express-entry/16-immigration-to-canada-express-entry.html" target="_blank"
-  //        rel="noopener noreferrer">
-  //       Ссылка на источник
-  //     </a>
-  //   ),
-  //   key: 'alipay',
-  // },
 ];
 
 const MenuMain: React.FC = () => {
@@ -44,7 +35,14 @@ const MenuMain: React.FC = () => {
     // console.log('click ', e);
     setCurrent(e.key);
   };
-  return <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} theme="dark"/>
+  return <Menu
+    onClick={onClick}
+    selectedKeys={[current]}
+    mode="horizontal"
+    items={items}
+    theme="light"
+    className='menu-main'
+  />
 };
 
 export default MenuMain;

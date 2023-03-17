@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import {Button, Card, Input, Typography} from "antd";
+import {Button, Card, FloatButton, Input, Typography} from "antd";
 import {postNewArticle} from "../../services";
 import {ArticleType} from "../../types";
 
@@ -28,7 +28,7 @@ export const PageAddArticle: React.FC = () => {
   };
 
   return (
-    <Card>
+    <Card style={{width: '70%', margin: '0 auto'}}>
       <div style={{display: 'grid'}}>
         <div className='centerTitle'>
           <Title level={3}>Добавление новой статьи</Title>
@@ -44,7 +44,7 @@ export const PageAddArticle: React.FC = () => {
         <ReactQuill
           value={article.content}
           onChange={handleChange}
-          placeholder="Write your article here..."
+          placeholder="Текст статьи..."
           modules={{
             toolbar: [
               [{'header': [1, 2, false]}],
@@ -61,10 +61,16 @@ export const PageAddArticle: React.FC = () => {
             'link', 'image',
           ]}
         />
-        <Button onClick={ () => {
-          addArticle()
-          // setArticle()
-        }} style={{marginTop: 10}}>Сохранить</Button>
+        <Button
+          style={{marginTop: 10}}
+          onClick={() => {
+            addArticle()
+            // setArticle()
+          }}
+        >
+          Сохранить
+        </Button>
+        <FloatButton.BackTop/>
       </div>
     </Card>
   );

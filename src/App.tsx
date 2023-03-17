@@ -10,28 +10,24 @@ const App: React.FC = () => {
 
   return (
     <Layout>
-      <Header style={{position: 'sticky', top: 0, zIndex: 1, width: '100%'}}>
-        <div
+      <Header style={{position: 'sticky', top: 0, zIndex: 1, width: '100%', background: "white"}}>
+        <img
+          src={`${process.env.PUBLIC_URL}/logo.png`}
+          alt="Logo"
           style={{
             float: 'left',
-            width: 120,
-            height: 31,
-            margin: '16px 24px 16px 0',
-            background: 'rgba(255, 255, 255, 0.2)',
-          }}
-        />
-        <div className="logo"/>
+            width: 160,
+            height: 67,
+          }}/>
         <MenuMain/>
       </Header>
       <Layout className="site-layout">
         <Content className="site-layout" style={{padding: '0 50px'}}>
           <Breadcrumb style={{margin: '16px 0'}}>
-            <Breadcrumb.Item>Главная</Breadcrumb.Item>
-            <Breadcrumb.Item>Express entry</Breadcrumb.Item>
-            <Breadcrumb.Item>Пошаговая инструкция</Breadcrumb.Item>
+            {/*<Breadcrumb.Item>Главная</Breadcrumb.Item>*/}
+            {/*<Breadcrumb.Item>Все статьи</Breadcrumb.Item>*/}
           </Breadcrumb>
           <AppRoutes/>
-          {/*<div style={{padding: 24, minHeight: 380,}}>Content</div>*/}
         </Content>
       </Layout>
       <Footer style={{textAlign: 'center'}}>Если вы еще не в Канаде, тогда мы идем к вам!</Footer>

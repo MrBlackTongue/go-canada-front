@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import 'react-quill/dist/quill.snow.css';
-import {Card, Typography, Space} from "antd";
+import {Card, Typography, Space, FloatButton} from "antd";
 import {getArticleById} from "../../services";
 import {ArticleType} from "../../types";
 import { useParams } from 'react-router-dom';
@@ -20,7 +20,7 @@ const PageArticle: React.FC = () => {
   }, [id]);
 
   return (
-    <Card>
+    <Card style={{width: '70%', margin: '0 auto'}}>
       <div style={{ display: 'grid' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <Title level={3}>{article?.title}</Title>
@@ -33,8 +33,7 @@ const PageArticle: React.FC = () => {
           </Card>
         </Space>
       </div>
-      <div>
-      </div>
+      <FloatButton.BackTop/>
     </Card>
   );
 };

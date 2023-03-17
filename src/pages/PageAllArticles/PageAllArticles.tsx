@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import 'react-quill/dist/quill.snow.css';
-import {Button, Card, Typography, Space, Popconfirm} from "antd";
+import {Button, Card, Typography, Space, Popconfirm, FloatButton} from "antd";
 import {getAllArticles, deleteArticleById} from "../../services";
 import {ArticleType} from "../../types";
 import {ZoomInOutlined, DeleteOutlined, EditOutlined} from '@ant-design/icons';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 const {Title} = Typography;
 
@@ -30,32 +30,33 @@ const PageAllArticles: React.FC = () => {
   }, [])
 
   return (
-    <Card>
+    <Card style={{width: '70%', margin: '0 auto'}}>
       <div style={{display: 'grid'}}>
         <div className='centerTitle'>
           <Title level={3}>Все статьи</Title>
         </div>
-        <Space direction="vertical">
+        <Space direction="vertical" style={{width: '100%', gap: '30px'}}>
           {articles?.map((article) => (
             <Card
               hoverable
               key={article.id}
               title={article.title}
+              style={{width: '100%'}}
               extra={
                 <Space>
                   <Link to={`/article/${article.id}`}>
                     <Button
-                      type="primary"
-                      icon={<ZoomInOutlined />}>
+                      className='blueButton'
+                      icon={<ZoomInOutlined/>}>
                       Просмотреть
                     </Button>
                   </Link>
                   <Link to={`/edit-article/${article.id}`}>
                     <Button
-                      type="primary"
-                      icon={<EditOutlined />}
-                      style={{ backgroundColor: 'green', borderColor: 'green' }}
-                      >
+                      type="dashed"
+                      icon={<EditOutlined/>}
+                      className='greenButton'
+                    >
                       Редактировать
                     </Button>
                   </Link>
@@ -67,15 +68,14 @@ const PageAllArticles: React.FC = () => {
                       cancelText="Нет"
                     >
                       <Button
-                        type="primary"
-                        danger icon={<DeleteOutlined />}>
+                        danger icon={<DeleteOutlined/>}>
                         Удалить
                       </Button>
                     </Popconfirm>
                   )}
                 </Space>
               }
-              style={{width: '100%'}}>
+            >
               {article.content && (
                 <div dangerouslySetInnerHTML={{__html: article.content}}/>
               )}
@@ -83,8 +83,7 @@ const PageAllArticles: React.FC = () => {
           ))}
         </Space>
       </div>
-      <div>
-      </div>
+      <FloatButton.BackTop/>
     </Card>
   );
 };
