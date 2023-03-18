@@ -62,7 +62,7 @@ const PageAllArticles: React.FC = () => {
                   </Link>
                   {article.id && (
                     <Popconfirm
-                      title="Вы уверены, что хотите удалить статью?"
+                      title="Вы уверены, что хотите удалить эту статью?"
                       onConfirm={() => handleDelete(article.id)}
                       okText="Да"
                       cancelText="Нет"

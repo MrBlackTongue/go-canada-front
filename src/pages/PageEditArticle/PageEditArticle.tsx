@@ -8,8 +8,8 @@ import ReactQuill from "react-quill";
 const {Title} = Typography;
 
 export const PageEditArticle: React.FC = () => {
-  const [article, setArticle] = useState<ArticleType>();
 
+  const [article, setArticle] = useState<ArticleType>();
   const {id} = useParams<{ id: string }>();
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,9 +44,9 @@ export const PageEditArticle: React.FC = () => {
       </div>
       <div>
         <Input
+          value={article?.title}
           style={{width: 600, marginBottom: '1em'}}
           placeholder="Название статьи"
-          value={article?.title}
           onChange={handleTitleChange}
         />
         <ReactQuill
