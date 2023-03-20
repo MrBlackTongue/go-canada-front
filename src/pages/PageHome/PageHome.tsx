@@ -5,7 +5,7 @@ import './PageHome.css';
 const { Title } = Typography;
 
 const PageHome = () => (
-  <Title>Привет, Валечик</Title>
+  <Title>Здравствуйте, друзья</Title>
 );
 
 export default PageHome;

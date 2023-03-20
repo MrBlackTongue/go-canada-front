@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Link, useParams} from 'react-router-dom';
+import {useParams, useNavigate} from 'react-router-dom';
 import {Card, Typography, Input, Button, FloatButton} from 'antd';
 import {getArticleById, putUpdateArticle} from '../../services';
 import {ArticleType} from '../../types';
@@ -12,6 +12,8 @@ export const PageEditArticle: React.FC = () => {
   const [article, setArticle] = useState<ArticleType>();
   const {id} = useParams<{ id: string }>();
 
+  const navigate = useNavigate();
+
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setArticle({...article, title: e.target.value});
   };
@@ -20,10 +22,15 @@ export const PageEditArticle: React.FC = () => {
     setArticle({...article, content: value});
   };
 
-  const changeArticle = async () => {
+  const updateArticle = async () => {
     if (article) {
-      await putUpdateArticle(article);
-      return article;
+      const updatedArticle: ArticleType = {
+        id: article.id,
+        title: article.title,
+        content: article.content,
+      };
+      await putUpdateArticle(updatedArticle);
+      navigate(`/article/${id}`);
     }
   };
 
@@ -69,9 +76,7 @@ export const PageEditArticle: React.FC = () => {
             'link', 'image',
           ]}
         />
-        <Link to={`/article/${id}`}>
-          <Button onClick={changeArticle} style={{marginTop: 10}}>Сохранить</Button>
-        </Link>
+        <Button onClick={updateArticle} style={{marginTop: 10}}>Сохранить</Button>
       </div>
       <FloatButton.BackTop/>
     </Card>
