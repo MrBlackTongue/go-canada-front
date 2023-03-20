@@ -4,6 +4,7 @@ import 'react-quill/dist/quill.snow.css';
 import {Button, Card, FloatButton, Input, Typography} from "antd";
 import {postNewArticle} from "../../services";
 import {ArticleType} from "../../types";
+import {useNavigate} from 'react-router-dom';
 
 const {Title} = Typography;
 
@@ -12,6 +13,8 @@ export const PageAddArticle: React.FC = () => {
     title: '',
     content: '',
   });
+
+  const navigate = useNavigate();
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setArticle({...article, title: e.target.value});
@@ -24,6 +27,7 @@ export const PageAddArticle: React.FC = () => {
   const addArticle = () => {
     postNewArticle(article);
     console.log('Article saved:', article);
+    navigate(`/all-article`);
     return article;
   };
 
